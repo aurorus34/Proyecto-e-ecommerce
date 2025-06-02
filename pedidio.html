@@ -3,55 +3,1171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedido de Remeras Personalizables</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>TeeStyle - Pedido de Remeras Personalizables</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #34495e;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .form-group input:hover,
+        .form-group select:hover {
+            border-color: #9b9b9b;
+        }
+
+        .color-picker-container {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.selected {
+            border-color: #667eea;
+            transform: scale(1.1);
+        }
+
+        .price-display {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .availability-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .unavailable {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .available .status-dot {
+            background: #28a745;
+        }
+
+        .unavailable .status-dot {
+            background: #dc3545;
+        }
+
+        .preview-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e1e8ed;
+        }
+
+        .preview-title {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .preview-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .preview-item:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 0 10px;
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .floating-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Galería de Remeras */
+        .gallery-section {
+            max-width: 1200px;
+            margin: 0 auto 3rem auto;
+            padding: 0 20px;
+        }
+
+        .gallery-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .gallery-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .gallery-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-wrapper {
+            overflow: hidden;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            min-width: 300px;
+            height: 300px;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(102, 126, 234, 0.9);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .gallery-nav:hover {
+            background: rgba(102, 126, 234, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-nav.prev {
+            left: 10px;
+        }
+
+        .gallery-nav.next {
+            right: 10px;
+        }
+
+        .gallery-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #667eea;
+            transform: scale(1.2);
+        }
+
+        .family-message {
+            margin-top: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .message-content {
+            text-align: center;
+        }
+
+        .message-content h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .message-content p {
+            color: #2c3e50;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .message-content strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-item {
+                min-width: 250px;
+                height: 250px;
+            }
+            
+            .gallery-container {
+                padding: 1rem;
+            }
+            
+            .gallery-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .selected-product-content {
+                flex-direction: column;
+            }
+            
+            .selected-product-image {
+                max-width: 100%;
+            }
+        }
+
+        /* Sección de Producto Seleccionado */
+        .selected-product-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .selected-product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .selected-product-header h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .clear-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            background: #c82333;
+            transform: translateY(-1px);
+        }
+
+        .selected-product-content {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .selected-product-image {
+            flex-shrink: 0;
+            max-width: 300px;
+        }
+
+        .selected-product-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .selected-product-details {
+            flex: 1;
+        }
+
+        .selected-product-details h3 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-details-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #34495e;
+            min-width: 150px;
+        }
+
+        .detail-value {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .sizes-display {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .size-badge {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .colors-display {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .color-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: #e9ecef;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+
+        .product-description {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid #667eea;
+        }
+
+        .product-description p {
+            margin: 0;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .price-value {
+            font-size: 1.5rem;
+        }
+    </style>
 </head>
 <body>
+    <div class="header floating-animation">
+        <h1>TeeStyle</h1>
+        <p>Crea tu remera perfecta - Diseño personalizable</p>
+    </div>
+
+    <!-- Galería de Remeras -->
+    <div class="gallery-section">
+        <div class="gallery-header">
+            <h2>Nuestros Trabajos</h2>
+            <p>Cada remera es única, hecha con amor por nuestra familia</p>
+        </div>
+        
+        <div class="gallery-container">
+            <button class="gallery-nav prev" id="prevBtn">❮</button>
+            <div class="gallery-wrapper">
+                <div class="gallery-track" id="galleryTrack">
+                    <div class="gallery-item" data-product='{"id":1,"name":"Remera Superhéroes Batman","image":"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop&crop=center","brand":"Marvel Comics","price":8500,"sizes":["S","M","L","XL"],"type":"Manga Corta","fabric":"Algodón 100%","condition":"Nueva","colors":["negro","azul","gris"],"description":"Diseño exclusivo de Batman con estampado de alta calidad. Perfecto para fanáticos de los superhéroes."}'>
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop&crop=center" alt="Remera Superhéroes">
+                        <div class="gallery-overlay">
+                            <h4>Diseño Superhéroes</h4>
+                            <p>Batman personalizado</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-product='{"id":2,"name":"Remera Deportiva Nike","image":"https://images.unsplash.com/photo-1583743089695-4b816a340f82?w=400&h=400&fit=crop&crop=center","brand":"Nike","price":12000,"sizes":["M","L","XL","XXL"],"type":"Manga Corta","fabric":"Dri-FIT Poliéster","condition":"Nueva","colors":["negro","blanco","azul","rojo"],"description":"Remera deportiva de alta performance con tecnología Dri-FIT para máxima comodidad durante el ejercicio."}'>
+                        <img src="https://images.unsplash.com/photo-1583743089695-4b816a340f82?w=400&h=400&fit=crop&crop=center" alt="Remera Deportiva">
+                        <div class="gallery-overlay">
+                            <h4>Estilo Deportivo</h4>
+                            <p>Diseño minimalista</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-product='{"id":3,"name":"Remera Vintage Retro","image":"https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&h=400&fit=crop&crop=center","brand":"Vintage Co.","price":7500,"sizes":["S","M","L"],"type":"Manga Corta","fabric":"Algodón Vintage","condition":"Como Nueva","colors":["beige","marrón","verde"],"description":"Diseño retro inspirado en los años 80. Perfecta para un look casual y con estilo."}'>
+                        <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&h=400&fit=crop&crop=center" alt="Remera Vintage">
+                        <div class="gallery-overlay">
+                            <h4>Diseño Vintage</h4>
+                            <p>Estilo retro único</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-product='{"id":4,"name":"Remera Arte Abstracto","image":"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400&h=400&fit=crop&crop=center","brand":"Art Studio","price":9500,"sizes":["S","M","L","XL"],"type":"Manga Corta","fabric":"Algodón Premium","condition":"Nueva","colors":["multicolor","negro","blanco"],"description":"Diseño artístico único con patrones abstractos. Una pieza de arte que puedes llevar puesta."}'>
+                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400&h=400&fit=crop&crop=center" alt="Remera Abstracta">
+                        <div class="gallery-overlay">
+                            <h4>Arte Abstracto</h4>
+                            <p>Diseño exclusivo</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-product='{"id":5,"name":"Remera 100% Personalizada","image":"https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop&crop=center","brand":"TeeStyle Custom","price":11000,"sizes":["XS","S","M","L","XL","XXL"],"type":"Manga Corta","fabric":"Algodón Orgánico","condition":"Nueva","colors":["todos los colores disponibles"],"description":"Crea tu diseño único. Envianos tu idea y la hacemos realidad con materiales de primera calidad."}'>
+                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop&crop=center" alt="Remera Personalizada">
+                        <div class="gallery-overlay">
+                            <h4>100% Personalizada</h4>
+                            <p>Tu idea, nuestra creación</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-product='{"id":6,"name":"Remera Colores Vibrantes","image":"https://images.unsplash.com/photo-1503341338985-95b486a6eb1d?w=400&h=400&fit=crop&crop=center","brand":"Color Burst","price":8000,"sizes":["M","L","XL"],"type":"Manga Corta","fabric":"Algodón 50% - Poliéster 50%","condition":"Nueva","colors":["amarillo","naranja","violeta","verde"],"description":"Diseño multicolor vibrante que no pasa desapercibido. Perfecta para expresar tu personalidad."}'>
+                        <img src="https://images.unsplash.com/photo-1503341338985-95b486a6eb1d?w=400&h=400&fit=crop&crop=center" alt="Remera Colorida">
+                        <div class="gallery-overlay">
+                            <h4>Colores Vibrantes</h4>
+                            <p>Diseño multicolor</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-product='{"id":7,"name":"Remera Elegante Minimalista","image":"https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=400&h=400&fit=crop&crop=center","brand":"Minimal Style","price":6500,"sizes":["S","M","L","XL"],"type":"Manga Larga","fabric":"Algodón Pima","condition":"Nueva","colors":["blanco","negro","gris"],"description":"Diseño elegante y minimalista. Perfecta para el trabajo o eventos casuales elegantes."}'>
+                        <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=400&h=400&fit=crop&crop=center" alt="Remera Elegante">
+                        <div class="gallery-overlay">
+                            <h4>Elegante y Simple</h4>
+                            <p>Perfecto para cualquier ocasión</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-product='{"id":8,"name":"Remera Arte Gráfico","image":"https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400&h=400&fit=crop&crop=center","brand":"Graphic Art","price":10500,"sizes":["S","M","L","XL","XXL"],"type":"Manga Corta","fabric":"Algodón Orgánico","condition":"Nueva","colors":["negro","blanco","azul","rojo"],"description":"Diseño gráfico original creado por artistas locales. Una pieza única con historia detrás."}'>
+                        <img src="https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400&h=400&fit=crop&crop=center" alt="Remera Artística">
+                        <div class="gallery-overlay">
+                            <h4>Arte Gráfico</h4>
+                            <p>Diseño original</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="gallery-nav next" id="nextBtn">❯</button>
+        </div>
+        
+        <div class="gallery-indicators" id="indicators"></div>
+        
+        <div class="family-message">
+            <div class="message-content">
+                <h3>💝 Hecho en Familia</h3>
+                <p>Somos una familia apasionada por el diseño. Cada remera es creada con dedicación y amor. 
+                <strong>¡No hay límites para tu creatividad!</strong> Cualquier diseño, cualquier color, cualquier idea que tengas, nosotros la hacemos realidad.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <h1>Formulario de Pedido</h1>
+        <!-- Sección de Producto Seleccionado -->
+        <div id="selectedProductSection" class="selected-product-section" style="display: none;">
+            <div class="selected-product-header">
+                <h2>Producto Seleccionado</h2>
+                <button id="clearSelection" class="clear-btn">✕ Cambiar Producto</button>
+            </div>
+            
+            <div class="selected-product-content">
+                <div class="selected-product-image">
+                    <img id="selectedProductImg" src="" alt="Producto seleccionado">
+                </div>
+                
+                <div class="selected-product-details">
+                    <h3 id="selectedProductName"></h3>
+                    <div class="product-details-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Marca:</span>
+                            <span id="selectedBrand" class="detail-value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span id="selectedType" class="detail-value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Tela:</span>
+                            <span id="selectedFabric" class="detail-value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Estado:</span>
+                            <span id="selectedCondition" class="detail-value"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Talles disponibles:</span>
+                            <div id="selectedSizes" class="sizes-display"></div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Colores disponibles:</span>
+                            <div id="selectedColors" class="colors-display"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-description">
+                        <p id="selectedDescription"></p>
+                    </div>
+                    
+                    <div class="product-price">
+                        <span class="price-label">Precio:</span>
+                        <span id="selectedPrice" class="price-value"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <form id="orderForm">
-            <label for="price">Precio:</label>
-            <input type="number" id="price" name="price" required>
+            <!-- Sección de Producto -->
+            <div class="form-section">
+                <h3 class="section-title">Detalles del Producto</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brand">Marca</label>
+                        <select id="brand" name="brand" required>
+                            <option value="">Selecciona una marca</option>
+                            <option value="nike">Nike</option>
+                            <option value="adidas">Adidas</option>
+                            <option value="puma">Puma</option>
+                            <option value="under-armour">Under Armour</option>
+                            <option value="otra">Otra marca</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="shirtType">Tipo de Remera</label>
+                        <select id="shirtType" name="shirtType" required>
+                            <option value="">Selecciona el tipo</option>
+                            <option value="corta">Manga Corta</option>
+                            <option value="larga">Manga Larga</option>
+                            <option value="tank">Musculosa</option>
+                        </select>
+                    </div>
+                </div>
 
-            <label for="size">Talle:</label>
-            <select id="size" name="size" required>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-            </select>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="size">Talle</label>
+                        <select id="size" name="size" required>
+                            <option value="">Selecciona tu talle</option>
+                            <option value="XS">XS (Extra Chico)</option>
+                            <option value="S">S (Chico)</option>
+                            <option value="M">M (Mediano)</option>
+                            <option value="L">L (Grande)</option>
+                            <option value="XL">XL (Extra Grande)</option>
+                            <option value="XXL">XXL (Doble Extra Grande)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="condition">Estado</label>
+                        <select id="condition" name="condition" required>
+                            <option value="">Selecciona el estado</option>
+                            <option value="nueva">Nueva</option>
+                            <option value="como-nueva">Como Nueva</option>
+                            <option value="usada-buen-estado">Usada - Buen Estado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-            <label for="brand">Marca:</label>
-            <input type="text" id="brand" name="brand" required>
+            <!-- Sección de Personalización -->
+            <div class="form-section">
+                <h3 class="section-title">Personalización</h3>
+                
+                <div class="form-group">
+                    <label>Color Principal</label>
+                    <div class="color-picker-container">
+                        <div class="color-option" style="background: #000000" data-color="negro" title="Negro"></div>
+                        <div class="color-option" style="background: #ffffff; border: 2px solid #ddd" data-color="blanco" title="Blanco"></div>
+                        <div class="color-option" style="background: #dc3545" data-color="rojo" title="Rojo"></div>
+                        <div class="color-option" style="background: #007bff" data-color="azul" title="Azul"></div>
+                        <div class="color-option" style="background: #28a745" data-color="verde" title="Verde"></div>
+                        <div class="color-option" style="background: #ffc107" data-color="amarillo" title="Amarillo"></div>
+                        <div class="color-option" style="background: #6f42c1" data-color="violeta" title="Violeta"></div>
+                        <div class="color-option" style="background: #fd7e14" data-color="naranja" title="Naranja"></div>
+                    </div>
+                    <input type="hidden" id="color" name="color" required>
+                </div>
 
-            <label for="color">Color:</label>
-            <input type="text" id="color" name="color" required>
+                <div class="form-group">
+                    <label for="design">Diseño</label>
+                    <select id="design" name="design" required>
+                        <option value="">Selecciona un diseño</option>
+                        <option value="superheroe">Superhéroes</option>
+                        <option value="deportivo">Deportivo</option>
+                        <option value="vintage">Vintage</option>
+                        <option value="minimalista">Minimalista</option>
+                        <option value="abstract">Abstracto</option>
+                        <option value="personalizado">Diseño Personalizado</option>
+                    </select>
+                </div>
+            </div>
 
-            <label for="shirtType">Tipo de Remera:</label>
-            <select id="shirtType" name="shirtType" required>
-                <option value="corta">Corta</option>
-                <option value="larga">Larga</option>
-            </select>
+            <!-- Sección de Precio y Disponibilidad -->
+            <div class="form-section">
+                <h3 class="section-title">Precio y Disponibilidad</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">Precio (ARS)</label>
+                        <input type="number" id="price" name="price" min="0" step="0.01" placeholder="0.00" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="availability">Disponibilidad</label>
+                        <select id="availability" name="availability" required>
+                            <option value="disponible">Disponible</option>
+                            <option value="agotado">Agotado</option>
+                            <option value="pre-orden">Pre-orden</option>
+                        </select>
+                    </div>
+                </div>
 
-            <label for="design">Diseño:</label>
-            <select id="design" name="design" required>
-                <option value="superheroe">Superhéroes</option>
-            </select>
+                <div id="availabilityIndicator" class="availability-indicator available">
+                    <div class="status-dot"></div>
+                    <span>Producto disponible</span>
+                </div>
+            </div>
 
-            <label for="condition">Estado:</label>
-            <select id="condition" name="condition" required>
-                <option value="nueva">Nueva</option>
-                <option value="vieja">Vieja</option>
-            </select>
+            <!-- Vista previa del pedido -->
+            <div class="preview-card">
+                <div class="preview-title">Resumen del Pedido</div>
+                <div id="orderPreview">
+                    <div class="preview-item">
+                        <span>Producto:</span>
+                        <span id="previewProduct">-</span>
+                    </div>
+                    <div class="preview-item">
+                        <span>Talle:</span>
+                        <span id="previewSize">-</span>
+                    </div>
+                    <div class="preview-item">
+                        <span>Color:</span>
+                        <span id="previewColor">-</span>
+                    </div>
+                    <div class="preview-item">
+                        <span>Diseño:</span>
+                        <span id="previewDesign">-</span>
+                    </div>
+                    <div class="preview-item">
+                        <span>Total:</span>
+                        <span id="previewPrice">$0.00</span>
+                    </div>
+                </div>
+            </div>
 
-            <label for="availability">Disponibilidad:</label>
-            <select id="availability" name="availability" required>
-                <option value="disponible">Disponible</option>
-                <option value="agotado">Agotado</option>
-            </select>
-
-            <button type="submit">Enviar Pedido</button>
+            <button type="submit" class="submit-btn">
+                Realizar Pedido
+            </button>
         </form>
     </div>
+
+    <script>
+        // Selección de color
+        const colorOptions = document.querySelectorAll('.color-option');
+        const colorInput = document.getElementById('color');
+
+        colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                colorOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                colorInput.value = option.dataset.color;
+                updatePreview();
+            });
+
+        // Funcionalidad de selección de producto desde la galería
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                // Prevenir que se active el auto-slide al hacer click
+                clearInterval(autoSlideInterval);
+                
+                const productData = JSON.parse(item.getAttribute('data-product'));
+                showSelectedProduct(productData);
+                
+                // Restart auto-slide después de 3 segundos
+                setTimeout(() => {
+                    autoSlideInterval = setInterval(nextSlide, 5000);
+                }, 3000);
+            });
+        });
+
+        function showSelectedProduct(product) {
+            const section = document.getElementById('selectedProductSection');
+            
+            // Llenar datos del producto
+            document.getElementById('selectedProductImg').src = product.image;
+            document.getElementById('selectedProductImg').alt = product.name;
+            document.getElementById('selectedProductName').textContent = product.name;
+            document.getElementById('selectedBrand').textContent = product.brand;
+            document.getElementById('selectedType').textContent = product.type;
+            document.getElementById('selectedFabric').textContent = product.fabric;
+            document.getElementById('selectedCondition').textContent = product.condition;
+            document.getElementById('selectedDescription').textContent = product.description;
+            document.getElementById('selectedPrice').textContent = `${product.price.toLocaleString('es-AR')}`;
+            
+            // Mostrar talles
+            const sizesContainer = document.getElementById('selectedSizes');
+            sizesContainer.innerHTML = '';
+            product.sizes.forEach(size => {
+                const sizeSpan = document.createElement('span');
+                sizeSpan.className = 'size-badge';
+                sizeSpan.textContent = size;
+                sizesContainer.appendChild(sizeSpan);
+            });
+            
+            // Mostrar colores
+            const colorsContainer = document.getElementById('selectedColors');
+            colorsContainer.innerHTML = '';
+            product.colors.forEach(color => {
+                const colorSpan = document.createElement('span');
+                colorSpan.className = 'color-badge';
+                colorSpan.textContent = color.charAt(0).toUpperCase() + color.slice(1);
+                colorsContainer.appendChild(colorSpan);
+            });
+            
+            // Actualizar formulario con datos del producto
+            document.getElementById('brand').value = product.brand;
+            document.getElementById('price').value = product.price;
+            document.getElementById('condition').value = product.condition.toLowerCase().replace(' ', '-');
+            
+            // Actualizar vista previa
+            updatePreview();
+            
+            // Mostrar sección y hacer scroll suave
+            section.style.display = 'block';
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Botón para limpiar selección
+        document.getElementById('clearSelection').addEventListener('click', () => {
+            document.getElementById('selectedProductSection').style.display = 'none';
+            
+            // Limpiar formulario
+            document.getElementById('orderForm').reset();
+            
+            // Limpiar colores seleccionados
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+            document.getElementById('color').value = '';
+            
+            updatePreview();
+        });
+
+        // Galería deslizante
+        let currentSlide = 0;
+        const galleryTrack = document.getElementById('galleryTrack');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const totalSlides = galleryItems.length;
+        const itemWidth = 316; // 300px + 16px gap
+        const visibleItems = Math.floor(window.innerWidth > 768 ? 3 : 1);
+        const maxSlide = Math.max(0, totalSlides - visibleItems);
+
+        // Crear indicadores
+        const indicatorsContainer = document.getElementById('indicators');
+        for (let i = 0; i <= maxSlide; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = 'indicator';
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+
+        function updateGallery() {
+            const translateX = -currentSlide * itemWidth;
+            galleryTrack.style.transform = `translateX(${translateX}px)`;
+            
+            // Actualizar indicadores
+            document.querySelectorAll('.indicator').forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + 1;
+            updateGallery();
+        }
+
+        function prevSlide() {
+            currentSlide = currentSlide <= 0 ? maxSlide : currentSlide - 1;
+            updateGallery();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateGallery();
+        }
+
+        // Event listeners para navegación
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        // Auto-slide cada 5 segundos
+        let autoSlideInterval = setInterval(nextSlide, 5000);
+
+        // Pausar auto-slide cuando el mouse está sobre la galería
+        const galleryContainer = document.querySelector('.gallery-container');
+        galleryContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+
+        galleryContainer.addEventListener('mouseleave', () => {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        });
+
+        // Navegación con teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // Touch/swipe para móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        galleryContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        galleryContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+        });
+
+        // Actualizar indicador de disponibilidad
+        const availabilitySelect = document.getElementById('availability');
+        const availabilityIndicator = document.getElementById('availabilityIndicator');
+
+        availabilitySelect.addEventListener('change', () => {
+            const value = availabilitySelect.value;
+            availabilityIndicator.className = 'availability-indicator';
+            
+            if (value === 'disponible') {
+                availabilityIndicator.classList.add('available');
+                availabilityIndicator.innerHTML = '<div class="status-dot"></div><span>Producto disponible</span>';
+            } else if (value === 'agotado') {
+                availabilityIndicator.classList.add('unavailable');
+                availabilityIndicator.innerHTML = '<div class="status-dot"></div><span>Producto agotado</span>';
+            } else if (value === 'pre-orden') {
+                availabilityIndicator.classList.add('available');
+                availabilityIndicator.innerHTML = '<div class="status-dot"></div><span>Disponible para pre-orden</span>';
+            }
+        });
+
+        // Actualizar vista previa
+        function updatePreview() {
+            const brand = document.getElementById('brand').value;
+            const shirtType = document.getElementById('shirtType').value;
+            const size = document.getElementById('size').value;
+            const color = document.getElementById('color').value;
+            const design = document.getElementById('design').value;
+            const price = document.getElementById('price').value;
+
+            document.getElementById('previewProduct').textContent = 
+                brand && shirtType ? `${brand} - ${shirtType}` : '-';
+            document.getElementById('previewSize').textContent = size || '-';
+            document.getElementById('previewColor').textContent = color || '-';
+            document.getElementById('previewDesign').textContent = design || '-';
+            document.getElementById('previewPrice').textContent = 
+                price ? `$${parseFloat(price).toFixed(2)}` : '$0.00';
+        }
+
+        // Event listeners para actualizar vista previa
+        ['brand', 'shirtType', 'size', 'design', 'price'].forEach(id => {
+            document.getElementById(id).addEventListener('change', updatePreview);
+        });
+
+        document.getElementById('price').addEventListener('input', updatePreview);
+
+        // Manejo del formulario
+        document.getElementById('orderForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Validar que se haya seleccionado un color
+            if (!colorInput.value) {
+                alert('Por favor selecciona un color para tu remera.');
+                return;
+            }
+
+            // Simular envío exitoso
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Procesando...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('¡Pedido enviado exitosamente! Te contactaremos pronto.');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
