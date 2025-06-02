@@ -3,42 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedido de Ropa</title>
+    <title>Pedido de Remeras Personalizables</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Realiza tu Pedido</h1>
+        <h1>Personaliza tu Remera</h1>
     </header>
     <main>
-        <section class="producto">
-            <h2>Selecciona tu Producto</h2>
-            <img src="camiseta.jpg" alt="Camiseta de moda">
-            <p>Descripción de la camiseta de moda.</p>
-            <p>Precio: $25.00</p>
-            <button>Añadir al Carrito</button>
-        </section>
-        <section class="informacion-envio">
-            <h2>Información de Envío</h2>
-            <form>
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-                
-                <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" required>
-                
-                <label for="ciudad">Ciudad:</label>
-                <input type="text" id="ciudad" name="ciudad" required>
-                
-                <label for="codigo-postal">Código Postal:</label>
-                <input type="text" id="codigo-postal" name="codigo-postal" required>
-                
-                <button type="submit">Realizar Pedido</button>
-            </form>
-        </section>
+        <form id="order-form">
+            <label for="shirt-type">Tipo de Remera:</label>
+            <select id="shirt-type" name="shirt-type">
+                <option value="t-shirt">T-Shirt</option>
+                <option value="tank-top">Tank Top</option>
+                <option value="long-sleeve">Manga Larga</option>
+            </select>
+
+            <label for="color">Color:</label>
+            <select id="color" name="color">
+                <option value="red">Rojo</option>
+                <option value="blue">Azul</option>
+                <option value="green">Verde</option>
+                <option value="black">Negro</option>
+            </select>
+
+            <label for="design">Diseño Personalizado:</label>
+            <textarea id="design" name="design" rows="4" placeholder="Describe tu diseño aquí..."></textarea>
+
+            <button type="submit">Realizar Pedido</button>
+        </form>
     </main>
     <footer>
-        <p>&copy; 2023 E-commerce de Ropa. Todos los derechos reservados.</p>
+        <p>&copy; 2023 E-commerce de Remeras Personalizables</p>
     </footer>
 </body>
 </html>

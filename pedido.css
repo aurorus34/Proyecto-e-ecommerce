@@ -6,8 +6,8 @@ body {
 }
 
 header {
-    background: #35424a;
-    color: #ffffff;
+    background: #333;
+    color: #fff;
     padding: 10px 0;
     text-align: center;
 }
@@ -16,33 +16,45 @@ main {
     padding: 20px;
 }
 
-.producto, .informacion-envio {
-    background: #ffffff;
+form {
+    background: #fff;
+    padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    padding: 20px;
 }
 
-h2 {
-    color: #35424a;
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 button {
-    background: #35424a;
-    color: #ffffff;
+    background: #5cb85c;
+    color: white;
     border: none;
     padding: 10px 15px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background: #45a049;
+    background: #4cae4c;
 }
 
 footer {
     text-align: center;
     padding: 10px 0;
-    background: #35424a;
-    color: #ffffff;
+    background: #333;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
