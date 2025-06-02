@@ -7,34 +7,51 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Personaliza tu Remera</h1>
-    </header>
-    <main>
-        <form id="order-form">
-            <label for="shirt-type">Tipo de Remera:</label>
-            <select id="shirt-type" name="shirt-type">
-                <option value="t-shirt">T-Shirt</option>
-                <option value="tank-top">Tank Top</option>
-                <option value="long-sleeve">Manga Larga</option>
+    <div class="container">
+        <h1>Formulario de Pedido</h1>
+        <form id="orderForm">
+            <label for="price">Precio:</label>
+            <input type="number" id="price" name="price" required>
+
+            <label for="size">Talle:</label>
+            <select id="size" name="size" required>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
             </select>
+
+            <label for="brand">Marca:</label>
+            <input type="text" id="brand" name="brand" required>
 
             <label for="color">Color:</label>
-            <select id="color" name="color">
-                <option value="red">Rojo</option>
-                <option value="blue">Azul</option>
-                <option value="green">Verde</option>
-                <option value="black">Negro</option>
+            <input type="text" id="color" name="color" required>
+
+            <label for="shirtType">Tipo de Remera:</label>
+            <select id="shirtType" name="shirtType" required>
+                <option value="corta">Corta</option>
+                <option value="larga">Larga</option>
             </select>
 
-            <label for="design">Diseño Personalizado:</label>
-            <textarea id="design" name="design" rows="4" placeholder="Describe tu diseño aquí..."></textarea>
+            <label for="design">Diseño:</label>
+            <select id="design" name="design" required>
+                <option value="superheroe">Superhéroes</option>
+            </select>
 
-            <button type="submit">Realizar Pedido</button>
+            <label for="condition">Estado:</label>
+            <select id="condition" name="condition" required>
+                <option value="nueva">Nueva</option>
+                <option value="vieja">Vieja</option>
+            </select>
+
+            <label for="availability">Disponibilidad:</label>
+            <select id="availability" name="availability" required>
+                <option value="disponible">Disponible</option>
+                <option value="agotado">Agotado</option>
+            </select>
+
+            <button type="submit">Enviar Pedido</button>
         </form>
-    </main>
-    <footer>
-        <p>&copy; 2023 E-commerce de Remeras Personalizables</p>
-    </footer>
+    </div>
 </body>
 </html>
