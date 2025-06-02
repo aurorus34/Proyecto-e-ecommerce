@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Ropa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Realiza tu Pedido</h1>
+    </header>
+    <main>
+        <section class="producto">
+            <h2>Selecciona tu Producto</h2>
+            <img src="camiseta.jpg" alt="Camiseta de moda">
+            <p>Descripción de la camiseta de moda.</p>
+            <p>Precio: $25.00</p>
+            <button>Añadir al Carrito</button>
+        </section>
+        <section class="informacion-envio">
+            <h2>Información de Envío</h2>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" required>
+                
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" id="ciudad" name="ciudad" required>
+                
+                <label for="codigo-postal">Código Postal:</label>
+                <input type="text" id="codigo-postal" name="codigo-postal" required>
+                
+                <button type="submit">Realizar Pedido</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 E-commerce de Ropa. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
