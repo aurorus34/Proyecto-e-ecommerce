@@ -93,7 +93,8 @@
         }
 
         .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 0.8rem 1rem;
             border: 2px solid #e1e8ed;
@@ -101,10 +102,17 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             background: white;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
         }
 
         .form-group input:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -112,7 +120,8 @@
         }
 
         .form-group input:hover,
-        .form-group select:hover {
+        .form-group select:hover,
+        .form-group textarea:hover {
             border-color: #9b9b9b;
         }
 
@@ -120,6 +129,7 @@
             display: flex;
             gap: 0.5rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .color-option {
@@ -141,15 +151,152 @@
             transform: scale(1.1);
         }
 
-        .price-display {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        /* Barra de Precios Fijos */
+        .pricing-bar {
+            background: linear-gradient(135deg, #28a745, #20c997);
             color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+        }
+
+        .pricing-bar h3 {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .price-item {
+            background: rgba(255, 255, 255, 0.15);
             padding: 1rem;
             border-radius: 10px;
             text-align: center;
-            font-size: 1.2rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .price-item h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            margin: 1rem 0;
+        }
+
+        .price-item .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .price-item .description {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+        }
+
+        /* Sección de Combos */
+        .combos-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .combos-section h3 {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .combo-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .combo-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .combo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .combo-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .combo-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffd700;
+        }
+
+        .combo-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Variables del Administrador */
+        .admin-variables {
+            background: #e9ecef;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #6c757d;
+        }
+
+        .variable-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .variable-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .variable-name {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .variable-price {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .variable-price.variable {
+            color: #fd7e14;
+            font-style: italic;
+        }
+
+        .variable-price.variable::after {
+            content: ' (Variable)';
+            font-size: 0.8rem;
+            color: #6c757d;
         }
 
         .submit-btn {
@@ -175,41 +322,6 @@
 
         .submit-btn:active {
             transform: translateY(0);
-        }
-
-        .availability-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-top: 0.5rem;
-        }
-
-        .available {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .unavailable {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .available .status-dot {
-            background: #28a745;
-        }
-
-        .unavailable .status-dot {
-            background: #dc3545;
         }
 
         .preview-card {
@@ -254,6 +366,10 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .floating-animation {
@@ -265,7 +381,7 @@
             50% { transform: translateY(-5px); }
         }
 
-        /* Galería de Remeras */
+        /* Estilos para la galería (mantenemos los existentes) */
         .gallery-section {
             max-width: 1200px;
             margin: 0 auto 3rem auto;
@@ -446,32 +562,7 @@
             font-weight: 600;
         }
 
-        @media (max-width: 768px) {
-            .gallery-item {
-                min-width: 250px;
-                height: 250px;
-            }
-            
-            .gallery-container {
-                padding: 1rem;
-            }
-            
-            .gallery-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-            .selected-product-content {
-                flex-direction: column;
-            }
-            
-            .selected-product-image {
-                max-width: 100%;
-            }
-        }
-
-        /* Sección de Producto Seleccionado */
+        /* Sección de Producto Seleccionado (simplificada) */
         .selected-product-section {
             background: #f8f9fa;
             border-radius: 15px;
@@ -541,88 +632,14 @@
             margin-bottom: 1.5rem;
         }
 
-        .product-details-grid {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .detail-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .detail-label {
-            font-weight: 600;
-            color: #34495e;
-            min-width: 150px;
-        }
-
-        .detail-value {
-            color: #2c3e50;
-            font-weight: 500;
-        }
-
-        .sizes-display {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .size-badge {
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 0.6rem;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .colors-display {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .color-badge {
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            background: #e9ecef;
-            color: #495057;
-            border: 1px solid #dee2e6;
-        }
-
-        .product-description {
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border-left: 3px solid #667eea;
-        }
-
-        .product-description p {
-            margin: 0;
-            color: #2c3e50;
-            line-height: 1.6;
-        }
-
-        .product-price {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .price-value {
-            font-size: 1.5rem;
+        @media (max-width: 768px) {
+            .selected-product-content {
+                flex-direction: column;
+            }
+            
+            .selected-product-image {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -643,60 +660,46 @@
             <button class="gallery-nav prev" id="prevBtn">❮</button>
             <div class="gallery-wrapper">
                 <div class="gallery-track" id="galleryTrack">
-                    <div class="gallery-item" data-product='{"id":1,"name":"Remera Superhéroes Batman","image":"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop&crop=center","brand":"Marvel Comics","price":8500,"sizes":["S","M","L","XL"],"type":"Manga Corta","fabric":"Algodón 100%","condition":"Nueva","colors":["negro","azul","gris"],"description":"Diseño exclusivo de Batman con estampado de alta calidad. Perfecto para fanáticos de los superhéroes."}'>
+                    <div class="gallery-item" data-product='{"id":1,"name":"Remera Superhéroes Batman","image":"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop&crop=center","price":"Desde $8,500","sizes":["S","M","L","XL"],"type":"Manga Corta","fabric":"Algodón 100%","condition":"Nueva","colors":["negro","azul","gris"],"description":"Diseño exclusivo de Batman con estampado de alta calidad. Perfecto para fanáticos de los superhéroes."}'>
                         <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop&crop=center" alt="Remera Superhéroes">
                         <div class="gallery-overlay">
                             <h4>Diseño Superhéroes</h4>
                             <p>Batman personalizado</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-product='{"id":2,"name":"Remera Deportiva Nike","image":"https://images.unsplash.com/photo-1583743089695-4b816a340f82?w=400&h=400&fit=crop&crop=center","brand":"Nike","price":12000,"sizes":["M","L","XL","XXL"],"type":"Manga Corta","fabric":"Dri-FIT Poliéster","condition":"Nueva","colors":["negro","blanco","azul","rojo"],"description":"Remera deportiva de alta performance con tecnología Dri-FIT para máxima comodidad durante el ejercicio."}'>
+                    <div class="gallery-item" data-product='{"id":2,"name":"Remera Deportiva","image":"https://images.unsplash.com/photo-1583743089695-4b816a340f82?w=400&h=400&fit=crop&crop=center","price":"Desde $12,000","sizes":["M","L","XL","XXL"],"type":"Manga Corta","fabric":"Dri-FIT Poliéster","condition":"Nueva","colors":["negro","blanco","azul","rojo"],"description":"Remera deportiva de alta performance con tecnología Dri-FIT para máxima comodidad durante el ejercicio."}'>
                         <img src="https://images.unsplash.com/photo-1583743089695-4b816a340f82?w=400&h=400&fit=crop&crop=center" alt="Remera Deportiva">
                         <div class="gallery-overlay">
                             <h4>Estilo Deportivo</h4>
                             <p>Diseño minimalista</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-product='{"id":3,"name":"Remera Vintage Retro","image":"https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&h=400&fit=crop&crop=center","brand":"Vintage Co.","price":7500,"sizes":["S","M","L"],"type":"Manga Corta","fabric":"Algodón Vintage","condition":"Como Nueva","colors":["beige","marrón","verde"],"description":"Diseño retro inspirado en los años 80. Perfecta para un look casual y con estilo."}'>
+                    <div class="gallery-item" data-product='{"id":3,"name":"Remera Vintage Retro","image":"https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&h=400&fit=crop&crop=center","price":"Desde $7,500","sizes":["S","M","L"],"type":"Manga Corta","fabric":"Algodón Vintage","condition":"Como Nueva","colors":["beige","marrón","verde"],"description":"Diseño retro inspirado en los años 80. Perfecta para un look casual y con estilo."}'>
                         <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&h=400&fit=crop&crop=center" alt="Remera Vintage">
                         <div class="gallery-overlay">
                             <h4>Diseño Vintage</h4>
                             <p>Estilo retro único</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-product='{"id":4,"name":"Remera Arte Abstracto","image":"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400&h=400&fit=crop&crop=center","brand":"Art Studio","price":9500,"sizes":["S","M","L","XL"],"type":"Manga Corta","fabric":"Algodón Premium","condition":"Nueva","colors":["multicolor","negro","blanco"],"description":"Diseño artístico único con patrones abstractos. Una pieza de arte que puedes llevar puesta."}'>
+                    <div class="gallery-item" data-product='{"id":4,"name":"Remera Arte Abstracto","image":"https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400&h=400&fit=crop&crop=center","price":"Desde $9,500","sizes":["S","M","L","XL"],"type":"Manga Corta","fabric":"Algodón Premium","condition":"Nueva","colors":["multicolor","negro","blanco"],"description":"Diseño artístico único con patrones abstractos. Una pieza de arte que puedes llevar puesta."}'>
                         <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400&h=400&fit=crop&crop=center" alt="Remera Abstracta">
                         <div class="gallery-overlay">
                             <h4>Arte Abstracto</h4>
                             <p>Diseño exclusivo</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-product='{"id":5,"name":"Remera 100% Personalizada","image":"https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop&crop=center","brand":"TeeStyle Custom","price":11000,"sizes":["XS","S","M","L","XL","XXL"],"type":"Manga Corta","fabric":"Algodón Orgánico","condition":"Nueva","colors":["todos los colores disponibles"],"description":"Crea tu diseño único. Envianos tu idea y la hacemos realidad con materiales de primera calidad."}'>
+                    <div class="gallery-item" data-product='{"id":5,"name":"Remera 100% Personalizada","image":"https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop&crop=center","price":"Variable según diseño","sizes":["XS","S","M","L","XL","XXL"],"type":"Manga Corta","fabric":"Algodón Orgánico","condition":"Nueva","colors":["todos los colores disponibles"],"description":"Crea tu diseño único. Envianos tu idea y la hacemos realidad con materiales de primera calidad."}'>
                         <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop&crop=center" alt="Remera Personalizada">
                         <div class="gallery-overlay">
                             <h4>100% Personalizada</h4>
                             <p>Tu idea, nuestra creación</p>
                         </div>
                     </div>
-                    <div class="gallery-item" data-product='{"id":6,"name":"Remera Colores Vibrantes","image":"https://images.unsplash.com/photo-1503341338985-95b486a6eb1d?w=400&h=400&fit=crop&crop=center","brand":"Color Burst","price":8000,"sizes":["M","L","XL"],"type":"Manga Corta","fabric":"Algodón 50% - Poliéster 50%","condition":"Nueva","colors":["amarillo","naranja","violeta","verde"],"description":"Diseño multicolor vibrante que no pasa desapercibido. Perfecta para expresar tu personalidad."}'>
+                    <div class="gallery-item" data-product='{"id":6,"name":"Remera Colores Vibrantes","image":"https://images.unsplash.com/photo-1503341338985-95b486a6eb1d?w=400&h=400&fit=crop&crop=center","price":"Desde $8,000","sizes":["M","L","XL"],"type":"Manga Corta","fabric":"Algodón 50% - Poliéster 50%","condition":"Nueva","colors":["amarillo","naranja","violeta","verde"],"description":"Diseño multicolor vibrante que no pasa desapercibido. Perfecta para expresar tu personalidad."}'>
                         <img src="https://images.unsplash.com/photo-1503341338985-95b486a6eb1d?w=400&h=400&fit=crop&crop=center" alt="Remera Colorida">
                         <div class="gallery-overlay">
                             <h4>Colores Vibrantes</h4>
                             <p>Diseño multicolor</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-product='{"id":7,"name":"Remera Elegante Minimalista","image":"https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=400&h=400&fit=crop&crop=center","brand":"Minimal Style","price":6500,"sizes":["S","M","L","XL"],"type":"Manga Larga","fabric":"Algodón Pima","condition":"Nueva","colors":["blanco","negro","gris"],"description":"Diseño elegante y minimalista. Perfecta para el trabajo o eventos casuales elegantes."}'>
-                        <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=400&h=400&fit=crop&crop=center" alt="Remera Elegante">
-                        <div class="gallery-overlay">
-                            <h4>Elegante y Simple</h4>
-                            <p>Perfecto para cualquier ocasión</p>
-                        </div>
-                    </div>
-                    <div class="gallery-item" data-product='{"id":8,"name":"Remera Arte Gráfico","image":"https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400&h=400&fit=crop&crop=center","brand":"Graphic Art","price":10500,"sizes":["S","M","L","XL","XXL"],"type":"Manga Corta","fabric":"Algodón Orgánico","condition":"Nueva","colors":["negro","blanco","azul","rojo"],"description":"Diseño gráfico original creado por artistas locales. Una pieza única con historia detrás."}'>
-                        <img src="https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=400&h=400&fit=crop&crop=center" alt="Remera Artística">
-                        <div class="gallery-overlay">
-                            <h4>Arte Gráfico</h4>
-                            <p>Diseño original</p>
                         </div>
                     </div>
                 </div>
@@ -716,318 +719,313 @@
     </div>
 
     <div class="container">
+        <!-- Barra de Precios Fijos -->
+        <div class="pricing-bar">
+            <h3>💰 Precios Base - Variables según personalización</h3>
+            <div class="pricing-grid">
+                <div class="price-item">
+                    <h4>Estampado Básico</h4>
+                    <div class="price">Desde $6,500</div>
+                    <div class="description">Diseño simple, 1 color</div>
+                </div>
+                <div class="price-item">
+                    <h4>Estampado Premium</h4>
+                    <div class="price">Desde $8,500</div>
+                    <div class="description">Diseño complejo, multicolor</div>
+                </div>
+                <div class="price-item">
+                    <h4>Bordado</h4>
+                    <div class="price">Desde $12,000</div>
+                    <div class="description">Bordado de alta calidad</div>
+                </div>
+                <div class="price-item">
+                    <h4>Sublimado</h4>
+                    <div class="price">Desde $10,500</div>
+                    <div class="description">Impresión de alta definición</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combos Especiales -->
+        <div class="combos-section">
+            <h3>🎁 Combos Especiales del Administrador</h3>
+            <div class="combo-item">
+                <div class="combo-header">
+                    <div class="combo-name">Combo Familiar (4 remeras)</div>
+                    <div class="combo-price">$28,000</div>
+                </div>
+                <div class="combo-description">4 remeras personalizadas con el mismo diseño base. Ahorrás $6,000 comprando individual.</div>
+            </div>
+            <div class="combo-item">
+                <div class="combo-header">
+                    <div class="combo-name">Combo Deportivo (3 remeras + short)</div>
+                    <div class="combo-price">$32,500</div>
+                </div>
+                <div class="combo-description">Set deportivo completo con remeras Dri-FIT y short a juego. Incluye bolso deportivo gratis.</div>
+            </div>
+            <div class="combo-item">
+                <div class="combo-header">
+                    <div class="combo-name">Combo Empresarial (6+ remeras)</div>
+                    <div class="combo-price">Precio variable</div>
+                </div>
+                <div class="combo-description">Uniformes para empresas con logo bordado. Consultar precio según cantidad y complejidad.</div>
+            </div>
+        </div>
+
+        <!-- Variables del Administrador -->
+        <div class="admin-variables">
+            <h3 class="section-title">Opciones Adicionales Disponibles</h3>
+            <div class="variable-item">
+                <div class="variable-name">Remera Oversize</div>
+                <div class="variable-price">+$1,500</div>
+            </div>
+            <div class="variable-item">
+                <div class="variable-name">Remera Crop Top</div>
+                <div class="variable-price">+$800</div>
+            </div>
+            <div class="variable-item">
+                <div class="variable-name">Hoodie Personalizado</div>
+                <div class="variable-price">+$18,500</div>
+            </div>
+            <div class="variable-item">
+                <div class="variable-name">Manga Larga</div>
+                <div class="variable-price">+$2,000</div>
+            </div>
+            <div class="variable-item">
+                <div class="variable-name">Diseño en Espalda</div>
+                <div class="variable-price">+$3,500</div>
+            </div>
+            <div class="variable-item">
+                <div class="variable-name">Diseño en Mangas</div>
+                <div class="variable-price">+$2,800</div>
+            </div>
+            <div class="variable-item">
+                <div class="variable-name">Colores Especiales (Neón/Metálicos)</div>
+                <div class="variable-price variable">Consultar</div>
+            </div>
+            <div class="variable-item">
+                <div class="variable-name">Tela Premium (Bambú/Orgánica)</div>
+                <div class="variable-price">+$4,500</div>
+            </div>
+        </div>
+
         <!-- Sección de Producto Seleccionado -->
-        <div id="selectedProductSection" class="selected-product-section" style="display: none;">
+        <div class="selected-product-section" id="selectedProductSection" style="display: none;">
             <div class="selected-product-header">
                 <h2>Producto Seleccionado</h2>
-                <button id="clearSelection" class="clear-btn">✕ Cambiar Producto</button>
+                <button class="clear-btn" onclick="clearSelectedProduct()">Limpiar Selección</button>
             </div>
-            
             <div class="selected-product-content">
                 <div class="selected-product-image">
-                    <img id="selectedProductImg" src="" alt="Producto seleccionado">
+                    <img id="selectedProductImage" src="" alt="Producto seleccionado">
                 </div>
-                
                 <div class="selected-product-details">
                     <h3 id="selectedProductName"></h3>
-                    <div class="product-details-grid">
-                        <div class="detail-item">
-                            <span class="detail-label">Marca:</span>
-                            <span id="selectedBrand" class="detail-value"></span>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Precio Base:</label>
+                            <input type="text" id="selectedProductPrice" readonly>
                         </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Tipo:</span>
-                            <span id="selectedType" class="detail-value"></span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Tela:</span>
-                            <span id="selectedFabric" class="detail-value"></span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Estado:</span>
-                            <span id="selectedCondition" class="detail-value"></span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Talles disponibles:</span>
-                            <div id="selectedSizes" class="sizes-display"></div>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Colores disponibles:</span>
-                            <div id="selectedColors" class="colors-display"></div>
+                        <div class="form-group">
+                            <label>Talles Disponibles:</label>
+                            <select id="selectedProductSizes">
+                                <option value="">Seleccionar talle</option>
+                            </select>
                         </div>
                     </div>
-                    
-                    <div class="product-description">
-                        <p id="selectedDescription"></p>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tipo:</label>
+                            <input type="text" id="selectedProductType" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Material:</label>
+                            <input type="text" id="selectedProductFabric" readonly>
+                        </div>
                     </div>
-                    
-                    <div class="product-price">
-                        <span class="price-label">Precio:</span>
-                        <span id="selectedPrice" class="price-value"></span>
+                    <div class="form-group">
+                        <label>Colores Disponibles:</label>
+                        <div class="color-picker-container" id="selectedProductColors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción:</label>
+                        <textarea id="selectedProductDescription" readonly></textarea>
                     </div>
                 </div>
             </div>
         </div>
 
         <form id="orderForm">
-            <!-- Sección de Producto -->
+            <!-- Información del Cliente -->
             <div class="form-section">
-                <h3 class="section-title">Detalles del Producto</h3>
-                
+                <h2 class="section-title">Información del Cliente</h2>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="brand">Marca</label>
-                        <select id="brand" name="brand" required>
-                            <option value="">Selecciona una marca</option>
-                            <option value="nike">Nike</option>
-                            <option value="adidas">Adidas</option>
-                            <option value="puma">Puma</option>
-                            <option value="under-armour">Under Armour</option>
-                            <option value="otra">Otra marca</option>
-                        </select>
+                        <label for="customerName">Nombre Completo *</label>
+                        <input type="text" id="customerName" name="customerName" required>
                     </div>
-                    
                     <div class="form-group">
-                        <label for="shirtType">Tipo de Remera</label>
-                        <select id="shirtType" name="shirtType" required>
-                            <option value="">Selecciona el tipo</option>
-                            <option value="corta">Manga Corta</option>
-                            <option value="larga">Manga Larga</option>
-                            <option value="tank">Musculosa</option>
-                        </select>
+                        <label for="customerPhone">Teléfono *</label>
+                        <input type="tel" id="customerPhone" name="customerPhone" required>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="size">Talle</label>
-                        <select id="size" name="size" required>
-                            <option value="">Selecciona tu talle</option>
-                            <option value="XS">XS (Extra Chico)</option>
-                            <option value="S">S (Chico)</option>
-                            <option value="M">M (Mediano)</option>
-                            <option value="L">L (Grande)</option>
-                            <option value="XL">XL (Extra Grande)</option>
-                            <option value="XXL">XXL (Doble Extra Grande)</option>
+                        <label for="customerEmail">Email</label>
+                        <input type="email" id="customerEmail" name="customerEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="deliveryAddress">Dirección de Entrega *</label>
+                        <input type="text" id="deliveryAddress" name="deliveryAddress" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detalles del Pedido -->
+            <div class="form-section">
+                <h2 class="section-title">Detalles del Pedido</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="shirtType">Tipo de Remera *</label>
+                        <select id="shirtType" name="shirtType" required>
+                            <option value="">Seleccionar tipo</option>
+                            <option value="basica">Básica - Desde $6,500</option>
+                            <option value="premium">Premium - Desde $8,500</option>
+                            <option value="deportiva">Deportiva - Desde $12,000</option>
+                            <option value="oversize">Oversize - Desde $8,000</option>
+                            <option value="crop">Crop Top - Desde $7,300</option>
                         </select>
                     </div>
-                    
                     <div class="form-group">
-                        <label for="condition">Estado</label>
-                        <select id="condition" name="condition" required>
-                            <option value="">Selecciona el estado</option>
-                            <option value="nueva">Nueva</option>
-                            <option value="como-nueva">Como Nueva</option>
-                            <option value="usada-buen-estado">Usada - Buen Estado</option>
+                        <label for="quantity">Cantidad *</label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="50" value="1" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="size">Talle *</label>
+                        <select id="size" name="size" required>
+                            <option value="">Seleccionar talle</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="technique">Técnica de Personalización *</label>
+                        <select id="technique" name="technique" required>
+                            <option value="">Seleccionar técnica</option>
+                            <option value="estampado">Estampado - Variable según diseño</option>
+                            <option value="bordado">Bordado - Desde $12,000</option>
+                            <option value="sublimado">Sublimado - Desde $10,500</option>
+                            <option value="vinilo">Vinilo Textil - Desde $9,000</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <!-- Sección de Personalización -->
+            <!-- Personalización -->
             <div class="form-section">
-                <h3 class="section-title">Personalización</h3>
-                
+                <h2 class="section-title">Personalización</h2>
                 <div class="form-group">
-                    <label>Color Principal</label>
-                    <div class="color-picker-container">
-                        <div class="color-option" style="background: #000000" data-color="negro" title="Negro"></div>
-                        <div class="color-option" style="background: #ffffff; border: 2px solid #ddd" data-color="blanco" title="Blanco"></div>
-                        <div class="color-option" style="background: #dc3545" data-color="rojo" title="Rojo"></div>
-                        <div class="color-option" style="background: #007bff" data-color="azul" title="Azul"></div>
-                        <div class="color-option" style="background: #28a745" data-color="verde" title="Verde"></div>
-                        <div class="color-option" style="background: #ffc107" data-color="amarillo" title="Amarillo"></div>
-                        <div class="color-option" style="background: #6f42c1" data-color="violeta" title="Violeta"></div>
-                        <div class="color-option" style="background: #fd7e14" data-color="naranja" title="Naranja"></div>
-                    </div>
-                    <input type="hidden" id="color" name="color" required>
+                    <label for="designDescription">Descripción del Diseño *</label>
+                    <textarea id="designDescription" name="designDescription" placeholder="Describe tu diseño: colores, texto, imágenes, ubicación en la remera, etc." required></textarea>
                 </div>
-
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Color Base de la Remera *</label>
+                        <div class="color-picker-container">
+                            <div class="color-option" style="background-color: #000000" data-color="negro" title="Negro"></div>
+                            <div class="color-option" style="background-color: #ffffff; border: 2px solid #ddd" data-color="blanco" title="Blanco"></div>
+                            <div class="color-option" style="background-color: #808080" data-color="gris" title="Gris"></div>
+                            <div class="color-option" style="background-color: #000080" data-color="azul-marino" title="Azul Marino"></div>
+                            <div class="color-option" style="background-color: #0066cc" data-color="azul" title="Azul"></div>
+                            <div class="color-option" style="background-color: #ff0000" data-color="rojo" title="Rojo"></div>
+                            <div class="color-option" style="background-color: #008000" data-color="verde" title="Verde"></div>
+                            <div class="color-option" style="background-color: #ffff00" data-color="amarillo" title="Amarillo"></div>
+                            <div class="color-option" style="background-color: #ffa500" data-color="naranja" title="Naranja"></div>
+                            <div class="color-option" style="background-color: #800080" data-color="violeta" title="Violeta"></div>
+                        </div>
+                        <input type="hidden" id="selectedColor" name="selectedColor" required>
+                    </div>
+                </div>
                 <div class="form-group">
-                    <label for="design">Diseño</label>
-                    <select id="design" name="design" required>
-                        <option value="">Selecciona un diseño</option>
-                        <option value="superheroe">Superhéroes</option>
-                        <option value="deportivo">Deportivo</option>
-                        <option value="vintage">Vintage</option>
-                        <option value="minimalista">Minimalista</option>
-                        <option value="abstract">Abstracto</option>
-                        <option value="personalizado">Diseño Personalizado</option>
+                    <label for="designPosition">Ubicación del Diseño</label>
+                    <select id="designPosition" name="designPosition">
+                        <option value="frente">Solo Frente (incluido)</option>
+                        <option value="espalda">Solo Espalda (+$1,500)</option>
+                        <option value="frente-espalda">Frente y Espalda (+$3,500)</option>
+                        <option value="mangas">Mangas (+$2,800)</option>
+                        <option value="completo">Diseño Completo (+$5,500)</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Sección de Precio y Disponibilidad -->
+            <!-- Detalles Adicionales del Cliente -->
             <div class="form-section">
-                <h3 class="section-title">Precio y Disponibilidad</h3>
-                
+                <h2 class="section-title">Detalles Adicionales</h2>
+                <div class="form-group">
+                    <label for="additionalDetails">Especificaciones Adicionales</label>
+                    <textarea id="additionalDetails" name="additionalDetails" placeholder="Agrega cualquier detalle específico que no esté contemplado en las opciones anteriores: medidas especiales, modificaciones, preferencias de entrega, etc."></textarea>
+                </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="price">Precio (ARS)</label>
-                        <input type="number" id="price" name="price" min="0" step="0.01" placeholder="0.00" required>
+                        <label for="urgency">Urgencia del Pedido</label>
+                        <select id="urgency" name="urgency">
+                            <option value="normal">Normal (7-10 días) - Sin costo adicional</option>
+                            <option value="rapido">Rápido (3-5 días) - +$2,500</option>
+                            <option value="express">Express (1-2 días) - +$5,000</option>
+                        </select>
                     </div>
-                    
                     <div class="form-group">
-                        <label for="availability">Disponibilidad</label>
-                        <select id="availability" name="availability" required>
-                            <option value="disponible">Disponible</option>
-                            <option value="agotado">Agotado</option>
-                            <option value="pre-orden">Pre-orden</option>
+                        <label for="deliveryMethod">Método de Entrega</label>
+                        <select id="deliveryMethod" name="deliveryMethod">
+                            <option value="retiro">Retiro en local - Gratis</option>
+                            <option value="envio-caba">Envío CABA - $1,500</option>
+                            <option value="envio-gba">Envío GBA - $2,500</option>
+                            <option value="envio-interior">Envío Interior - Variable</option>
                         </select>
                     </div>
                 </div>
-
-                <div id="availabilityIndicator" class="availability-indicator available">
-                    <div class="status-dot"></div>
-                    <span>Producto disponible</span>
-                </div>
             </div>
 
-            <!-- Vista previa del pedido -->
+            <!-- Vista Previa del Pedido -->
             <div class="preview-card">
-                <div class="preview-title">Resumen del Pedido</div>
+                <div class="preview-title">Vista Previa del Pedido</div>
                 <div id="orderPreview">
                     <div class="preview-item">
-                        <span>Producto:</span>
-                        <span id="previewProduct">-</span>
-                    </div>
-                    <div class="preview-item">
-                        <span>Talle:</span>
-                        <span id="previewSize">-</span>
-                    </div>
-                    <div class="preview-item">
-                        <span>Color:</span>
-                        <span id="previewColor">-</span>
-                    </div>
-                    <div class="preview-item">
-                        <span>Diseño:</span>
-                        <span id="previewDesign">-</span>
-                    </div>
-                    <div class="preview-item">
-                        <span>Total:</span>
-                        <span id="previewPrice">$0.00</span>
+                        <span>Precio estimado será calculado por el administrador</span>
+                        <span style="color: #fd7e14; font-style: italic;">Variable según personalización</span>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" class="submit-btn">
-                Realizar Pedido
-            </button>
+            <button type="submit" class="submit-btn">Enviar Pedido Personalizado</button>
         </form>
     </div>
 
     <script>
-        // Selección de color
-        const colorOptions = document.querySelectorAll('.color-option');
-        const colorInput = document.getElementById('color');
-
-        colorOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                colorOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                colorInput.value = option.dataset.color;
-                updatePreview();
-            });
-
-        // Funcionalidad de selección de producto desde la galería
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                // Prevenir que se active el auto-slide al hacer click
-                clearInterval(autoSlideInterval);
-                
-                const productData = JSON.parse(item.getAttribute('data-product'));
-                showSelectedProduct(productData);
-                
-                // Restart auto-slide después de 3 segundos
-                setTimeout(() => {
-                    autoSlideInterval = setInterval(nextSlide, 5000);
-                }, 3000);
-            });
-        });
-
-        function showSelectedProduct(product) {
-            const section = document.getElementById('selectedProductSection');
-            
-            // Llenar datos del producto
-            document.getElementById('selectedProductImg').src = product.image;
-            document.getElementById('selectedProductImg').alt = product.name;
-            document.getElementById('selectedProductName').textContent = product.name;
-            document.getElementById('selectedBrand').textContent = product.brand;
-            document.getElementById('selectedType').textContent = product.type;
-            document.getElementById('selectedFabric').textContent = product.fabric;
-            document.getElementById('selectedCondition').textContent = product.condition;
-            document.getElementById('selectedDescription').textContent = product.description;
-            document.getElementById('selectedPrice').textContent = `${product.price.toLocaleString('es-AR')}`;
-            
-            // Mostrar talles
-            const sizesContainer = document.getElementById('selectedSizes');
-            sizesContainer.innerHTML = '';
-            product.sizes.forEach(size => {
-                const sizeSpan = document.createElement('span');
-                sizeSpan.className = 'size-badge';
-                sizeSpan.textContent = size;
-                sizesContainer.appendChild(sizeSpan);
-            });
-            
-            // Mostrar colores
-            const colorsContainer = document.getElementById('selectedColors');
-            colorsContainer.innerHTML = '';
-            product.colors.forEach(color => {
-                const colorSpan = document.createElement('span');
-                colorSpan.className = 'color-badge';
-                colorSpan.textContent = color.charAt(0).toUpperCase() + color.slice(1);
-                colorsContainer.appendChild(colorSpan);
-            });
-            
-            // Actualizar formulario con datos del producto
-            document.getElementById('brand').value = product.brand;
-            document.getElementById('price').value = product.price;
-            document.getElementById('condition').value = product.condition.toLowerCase().replace(' ', '-');
-            
-            // Actualizar vista previa
-            updatePreview();
-            
-            // Mostrar sección y hacer scroll suave
-            section.style.display = 'block';
-            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        // Botón para limpiar selección
-        document.getElementById('clearSelection').addEventListener('click', () => {
-            document.getElementById('selectedProductSection').style.display = 'none';
-            
-            // Limpiar formulario
-            document.getElementById('orderForm').reset();
-            
-            // Limpiar colores seleccionados
-            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
-            document.getElementById('color').value = '';
-            
-            updatePreview();
-        });
-
-        // Galería deslizante
+        // Galería de imágenes
         let currentSlide = 0;
         const galleryTrack = document.getElementById('galleryTrack');
         const galleryItems = document.querySelectorAll('.gallery-item');
+        const indicators = document.getElementById('indicators');
         const totalSlides = galleryItems.length;
-        const itemWidth = 316; // 300px + 16px gap
-        const visibleItems = Math.floor(window.innerWidth > 768 ? 3 : 1);
-        const maxSlide = Math.max(0, totalSlides - visibleItems);
 
         // Crear indicadores
-        const indicatorsContainer = document.getElementById('indicators');
-        for (let i = 0; i <= maxSlide; i++) {
+        for (let i = 0; i < totalSlides; i++) {
             const indicator = document.createElement('div');
             indicator.className = 'indicator';
-            if (i === 0) indicator.classList.add('active');
             indicator.addEventListener('click', () => goToSlide(i));
-            indicatorsContainer.appendChild(indicator);
+            indicators.appendChild(indicator);
         }
 
         function updateGallery() {
-            const translateX = -currentSlide * itemWidth;
-            galleryTrack.style.transform = `translateX(${translateX}px)`;
+            const offset = -currentSlide * (300 + 16); // 300px width + 16px gap
+            galleryTrack.style.transform = `translateX(${offset}px)`;
             
             // Actualizar indicadores
             document.querySelectorAll('.indicator').forEach((indicator, index) => {
@@ -1036,12 +1034,12 @@
         }
 
         function nextSlide() {
-            currentSlide = currentSlide >= maxSlide ? 0 : currentSlide + 1;
+            currentSlide = (currentSlide + 1) % totalSlides;
             updateGallery();
         }
 
         function prevSlide() {
-            currentSlide = currentSlide <= 0 ? maxSlide : currentSlide - 1;
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
             updateGallery();
         }
 
@@ -1050,123 +1048,114 @@
             updateGallery();
         }
 
-        // Event listeners para navegación
+        // Event listeners
         document.getElementById('nextBtn').addEventListener('click', nextSlide);
         document.getElementById('prevBtn').addEventListener('click', prevSlide);
 
         // Auto-slide cada 5 segundos
-        let autoSlideInterval = setInterval(nextSlide, 5000);
+        setInterval(nextSlide, 5000);
 
-        // Pausar auto-slide cuando el mouse está sobre la galería
-        const galleryContainer = document.querySelector('.gallery-container');
-        galleryContainer.addEventListener('mouseenter', () => {
-            clearInterval(autoSlideInterval);
+        // Selección de producto desde la galería
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const productData = JSON.parse(this.dataset.product);
+                selectProduct(productData);
+            });
         });
 
-        galleryContainer.addEventListener('mouseleave', () => {
-            autoSlideInterval = setInterval(nextSlide, 5000);
-        });
-
-        // Navegación con teclado
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'ArrowRight') nextSlide();
-        });
-
-        // Touch/swipe para móviles
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        galleryContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        galleryContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
+        function selectProduct(product) {
+            const section = document.getElementById('selectedProductSection');
+            section.style.display = 'block';
             
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    nextSlide();
-                } else {
-                    prevSlide();
+            // Llenar datos del producto
+            document.getElementById('selectedProductImage').src = product.image;
+            document.getElementById('selectedProductName').textContent = product.name;
+            document.getElementById('selectedProductPrice').value = product.price;
+            document.getElementById('selectedProductType').value = product.type;
+            document.getElementById('selectedProductFabric').value = product.fabric;
+            document.getElementById('selectedProductDescription').value = product.description;
+            
+            // Llenar talles
+            const sizesSelect = document.getElementById('selectedProductSizes');
+            sizesSelect.innerHTML = '<option value="">Seleccionar talle</option>';
+            product.sizes.forEach(size => {
+                const option = document.createElement('option');
+                option.value = size;
+                option.textContent = size;
+                sizesSelect.appendChild(option);
+            });
+            
+            // Llenar colores
+            const colorsContainer = document.getElementById('selectedProductColors');
+            colorsContainer.innerHTML = '';
+            const colorMap = {
+                'negro': '#000000',
+                'blanco': '#ffffff',
+                'azul': '#0066cc',
+                'rojo': '#ff0000',
+                'verde': '#008000',
+                'amarillo': '#ffff00',
+                'gris': '#808080',
+                'multicolor': 'linear-gradient(45deg, #ff0000, #00ff00, #0000ff)',
+                'todos los colores disponibles': 'linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ffff00)'
+            };
+            
+            product.colors.forEach(color => {
+                const colorDiv = document.createElement('div');
+                colorDiv.className = 'color-option';
+                if (colorMap[color]) {
+                    if (color.includes('multicolor') || color.includes('todos')) {
+                        colorDiv.style.background = colorMap[color];
+                    } else {
+                        colorDiv.style.backgroundColor = colorMap[color];
+                    }
+                    if (color === 'blanco') {
+                        colorDiv.style.border = '2px solid #ddd';
+                    }
                 }
-            }
-        }
-        });
-
-        // Actualizar indicador de disponibilidad
-        const availabilitySelect = document.getElementById('availability');
-        const availabilityIndicator = document.getElementById('availabilityIndicator');
-
-        availabilitySelect.addEventListener('change', () => {
-            const value = availabilitySelect.value;
-            availabilityIndicator.className = 'availability-indicator';
+                colorDiv.title = color;
+                colorsContainer.appendChild(colorDiv);
+            });
             
-            if (value === 'disponible') {
-                availabilityIndicator.classList.add('available');
-                availabilityIndicator.innerHTML = '<div class="status-dot"></div><span>Producto disponible</span>';
-            } else if (value === 'agotado') {
-                availabilityIndicator.classList.add('unavailable');
-                availabilityIndicator.innerHTML = '<div class="status-dot"></div><span>Producto agotado</span>';
-            } else if (value === 'pre-orden') {
-                availabilityIndicator.classList.add('available');
-                availabilityIndicator.innerHTML = '<div class="status-dot"></div><span>Disponible para pre-orden</span>';
-            }
-        });
-
-        // Actualizar vista previa
-        function updatePreview() {
-            const brand = document.getElementById('brand').value;
-            const shirtType = document.getElementById('shirtType').value;
-            const size = document.getElementById('size').value;
-            const color = document.getElementById('color').value;
-            const design = document.getElementById('design').value;
-            const price = document.getElementById('price').value;
-
-            document.getElementById('previewProduct').textContent = 
-                brand && shirtType ? `${brand} - ${shirtType}` : '-';
-            document.getElementById('previewSize').textContent = size || '-';
-            document.getElementById('previewColor').textContent = color || '-';
-            document.getElementById('previewDesign').textContent = design || '-';
-            document.getElementById('previewPrice').textContent = 
-                price ? `$${parseFloat(price).toFixed(2)}` : '$0.00';
+            // Scroll suave a la sección
+            section.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Event listeners para actualizar vista previa
-        ['brand', 'shirtType', 'size', 'design', 'price'].forEach(id => {
-            document.getElementById(id).addEventListener('change', updatePreview);
+        function clearSelectedProduct() {
+            document.getElementById('selectedProductSection').style.display = 'none';
+        }
+
+        // Selector de colores
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remover selección anterior
+                document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                // Agregar selección actual
+                this.classList.add('selected');
+                // Guardar valor
+                document.getElementById('selectedColor').value = this.dataset.color;
+            });
         });
 
-        document.getElementById('price').addEventListener('input', updatePreview);
+        // Inicializar galería
+        updateGallery();
 
-        // Manejo del formulario
-        document.getElementById('orderForm').addEventListener('submit', (e) => {
+        // Manejar envío del formulario
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Validar que se haya seleccionado un color
-            if (!colorInput.value) {
-                alert('Por favor selecciona un color para tu remera.');
+            if (!document.getElementById('selectedColor').value) {
+                alert('Por favor selecciona un color base para la remera');
                 return;
             }
-
-            // Simular envío exitoso
-            const submitBtn = document.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
             
-            submitBtn.textContent = 'Procesando...';
-            submitBtn.disabled = true;
+            // Aquí puedes agregar la lógica para enviar el formulario
+            alert('¡Pedido enviado! Te contactaremos pronto para confirmar los detalles y el precio final.');
             
-            setTimeout(() => {
-                alert('¡Pedido enviado exitosamente! Te contactaremos pronto.');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+            // Opcional: resetear formulario
+            // this.reset();
+            // clearSelectedProduct();
         });
     </script>
 </body>
