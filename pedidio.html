@@ -14,33 +14,86 @@
     body {
       font-family: Arial, sans-serif;
       background: #f5f5f5;
-      padding: 20px;
       min-height: 100vh;
+    }
+
+    /* Header Navigation */
+    .header-nav {
+      background: #2d5a3d;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid #1a3d2b;
+    }
+
+    .menu-icon {
+      width: 40px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .menu-line {
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    .cart-icon {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 400px;
+      margin: 0 20px;
+      height: 35px;
+      border-radius: 6px;
+      border: none;
+      padding: 0 15px;
+      font-size: 14px;
+    }
+
+    .home-icon {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
     }
 
     .main-container {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .section-box {
-      background: white;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    /* Círculo 1 - Carrusel de Promociones */
+    /* Carousel Section - Full Width */
     .carousel-section {
-      height: 200px;
+      height: 250px;
       position: relative;
       overflow: hidden;
       border-radius: 12px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: 2px solid #ddd;
     }
 
     .carousel-container {
@@ -92,10 +145,13 @@
       background: white;
     }
 
-    /* Círculo 2 - Precios Fijos */
-    .conditions-section {
+    /* Single Row Section */
+    .single-row-section {
       background: #f8f9fa;
       border-left: 4px solid #28a745;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .conditions-title {
@@ -138,17 +194,184 @@
       font-weight: bold;
     }
 
-    /* Footer Section */
-    .footer-section {
-      background: #343a40;
+    /* Section Box */
+    .section-box {
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    /* Product Options */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .option-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option-group label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .option-group select,
+    .option-group input {
+      padding: 10px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .option-group select:focus,
+    .option-group input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    /* Image Upload */
+    .image-upload-section {
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      background: #fafafa;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-upload-section:hover {
+      border-color: #667eea;
+      background: #f0f4ff;
+    }
+
+    .upload-icon {
+      font-size: 3rem;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .upload-text {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .upload-subtext {
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    .image-preview {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .preview-image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 2px solid #ddd;
+    }
+
+    /* Flexible Section */
+    .flexible-section {
+      background: linear-gradient(45deg, #f0f0f0, #e8e8e8);
+      border: 2px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      color: #666;
+      font-style: italic;
+      text-align: center;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    /* Details Section */
+    .details-section textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      resize: vertical;
+      transition: border-color 0.3s;
+    }
+
+    .details-section textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    /* Submit Section */
+    .submit-section {
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       border: none;
+      padding: 15px 40px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Footer */
+    .footer-nav {
+      background: #2d5a3d;
+      padding: 20px;
+      margin-top: 30px;
+      border-top: 3px solid #1a3d2b;
     }
 
     .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 30px;
+      color: white;
     }
 
     .footer-content h3 {
@@ -207,147 +430,15 @@
       font-size: 1.2rem;
     }
 
-    /* Círculo 3 - Opciones del Producto */
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-    }
-
-    .option-group {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .option-group label {
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #333;
-    }
-
-    .option-group select,
-    .option-group input {
-      padding: 10px;
-      border: 2px solid #e0e0e0;
-      border-radius: 6px;
-      font-size: 14px;
-      transition: border-color 0.3s;
-    }
-
-    .option-group select:focus,
-    .option-group input:focus {
-      outline: none;
-      border-color: #667eea;
-    }
-
-    /* Círculo 4 - Subida de Imágenes */
-    .image-upload-section {
-      border: 2px dashed #ccc;
-      border-radius: 8px;
-      padding: 40px;
-      text-align: center;
-      background: #fafafa;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .image-upload-section:hover {
-      border-color: #667eea;
-      background: #f0f4ff;
-    }
-
-    .upload-icon {
-      font-size: 3rem;
-      color: #ccc;
-      margin-bottom: 15px;
-    }
-
-    .upload-text {
-      color: #666;
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-    }
-
-    .upload-subtext {
-      color: #999;
-      font-size: 0.9rem;
-    }
-
-    .image-preview {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .preview-image {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 6px;
-      border: 2px solid #ddd;
-    }
-
-    /* Círculo 5 - Sección Flexible */
-    .flexible-section {
-      background: linear-gradient(45deg, #f0f0f0, #e8e8e8);
-      border: 2px solid #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 120px;
-      color: #666;
-      font-style: italic;
-    }
-
-    /* Círculo 6 - Detalles Extras */
-    .details-section textarea {
-      width: 100%;
-      min-height: 100px;
-      padding: 15px;
-      border: 2px solid #e0e0e0;
-      border-radius: 6px;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      resize: vertical;
-      transition: border-color 0.3s;
-    }
-
-    .details-section textarea:focus {
-      outline: none;
-      border-color: #667eea;
-    }
-
-    .section-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 15px;
-    }
-
-    .submit-section {
-      text-align: center;
-      padding: 30px;
-    }
-
-    .submit-btn {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border: none;
-      padding: 15px 40px;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
-    }
-
     @media (max-width: 768px) {
+      .header-nav {
+        padding: 10px;
+      }
+      
+      .search-bar {
+        margin: 0 10px;
+      }
+      
       .options-grid {
         grid-template-columns: 1fr;
       }
@@ -372,9 +463,24 @@
   </style>
 </head>
 <body>
+  <!-- Header Navigation -->
+  <div class="header-nav">
+    <div class="menu-icon">
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+      <div class="menu-line"></div>
+    </div>
+    
+    <div class="cart-icon">🛒</div>
+    
+    <input type="text" class="search-bar" placeholder="Buscar productos...">
+    
+    <div class="home-icon">🏠</div>
+  </div>
+
   <div class="main-container">
     
-    <!-- Círculo 1: Carrusel de Promociones -->
+    <!-- Carousel Section - Full Width -->
     <div class="carousel-section">
       <div class="carousel-container" id="carouselContainer">
         <div class="carousel-slide">
@@ -403,8 +509,8 @@
       </div>
     </div>
 
-    <!-- Círculo 2: Precios Fijos -->
-    <div class="section-box conditions-section">
+    <!-- Single Row Section - Pricing -->
+    <div class="single-row-section">
       <div class="conditions-title">Precios de Remeras</div>
       <div class="pricing-grid">
         <div class="price-item">
@@ -426,7 +532,7 @@
       </div>
     </div>
 
-    <!-- Círculo 3: Opciones del Producto -->
+    <!-- Product Options -->
     <div class="section-box">
       <div class="section-title">Personaliza tu Remera</div>
       <form id="productForm">
@@ -499,7 +605,7 @@
       </form>
     </div>
 
-    <!-- Círculo 4: Subida de Imágenes -->
+    <!-- Image Upload -->
     <div class="section-box">
       <div class="section-title">Sube tus Imágenes de Referencia</div>
       <div class="image-upload-section" onclick="document.getElementById('imageInput').click()">
@@ -511,136 +617,136 @@
       </div>
     </div>
 
-    <!-- Círculo 5: Sección Flexible -->
-    <div class="section-box flexible-section">
+    <!-- Flexible Section -->
+    <div class="flexible-section">
       <div>Sección en desarrollo - Próximamente nuevas funcionalidades</div>
     </div>
 
-    <!-- Círculo 6: Detalles Extras -->
+    <!-- Details Section -->
     <div class="section-box details-section">
       <div class="section-title">Detalles Adicionales</div>
       <textarea id="extraDetails" placeholder="Escribe aquí cualquier detalle especial que quieras agregar a tu pedido (ej: nombre en la espalda, logo específico, instrucciones especiales, etc.)"></textarea>
     </div>
 
-    <!-- Botón de Envío -->
-    <div class="section-box submit-section">
+    <!-- Submit Section -->
+    <div class="submit-section">
       <button type="submit" class="submit-btn" form="productForm">Realizar Pedido</button>
     </div>
 
-    <!-- Términos y Condiciones -->
-    <div class="section-box footer-section">
-      <div class="footer-content">
-        <div class="terms-section">
-          <h3>Términos y Condiciones</h3>
-          <div class="terms-content">
-            <h4>1. Información General</h4>
-            <ul class="conditions-list">
-              <li>TeeStyle es un emprendimiento de sublimación con domicilio en Argentina</li>
-              <li>Al realizar un pedido, acepta estos términos en su totalidad</li>
-              <li>Nos reservamos el derecho de modificar estos términos sin previo aviso</li>
-            </ul>
-            
-            <h4>2. Productos y Servicios</h4>
-            <ul class="conditions-list">
-              <li>Garantía de calidad en todos nuestros productos de sublimación</li>
-              <li>Los colores pueden variar ligeramente debido al proceso de sublimación</li>
-              <li>Tiempo de producción: 7-15 días hábiles según disponibilidad</li>
-              <li>Productos personalizados no son reembolsables salvo defecto de fabricación</li>
-            </ul>
-            
-            <h4>3. Derechos de Autor y Propiedad Intelectual</h4>
-            <ul class="conditions-list">
-              <li>El cliente debe poseer derechos sobre las imágenes y diseños enviados</li>
-              <li>No se aceptan diseños con copyright sin autorización expresa</li>
-              <li>TeeStyle no se responsabiliza por infracciones de derechos de autor del cliente</li>
-              <li>Nuestros diseños propios están protegidos por derechos de autor</li>
-              <li>Prohibida la reproducción de marcas registradas sin autorización</li>
-            </ul>
-            
-            <h4>4. Cambios y Devoluciones</h4>
-            <ul class="conditions-list">
-              <li>Cambios por talle: 15 días desde la recepción (producto sin uso)</li>
-              <li>Devoluciones por defecto de fabricación: 30 días</li>
-              <li>Productos personalizados solo se cambian por defecto comprobable</li>
-              <li>Gastos de envío por cambio de talle a cargo del cliente</li>
-            </ul>
-            
-            <h4>5. Política de Privacidad y Datos</h4>
-            <ul class="conditions-list">
-              <li>Los datos personales se utilizan únicamente para procesar pedidos</li>
-              <li>No compartimos información personal con terceros</li>
-              <li>Las imágenes enviadas pueden ser utilizadas como portfolio (previa consulta)</li>
-              <li>Derecho a solicitar eliminación de datos personales</li>
-            </ul>
-            
-            <h4>6. Pagos y Precios</h4>
-            <ul class="conditions-list">
-              <li>Precios sujetos a cambios sin previo aviso</li>
-              <li>Seña del 50% para confirmar pedidos personalizados</li>
-              <li>Métodos de pago: efectivo, transferencia, MercadoPago</li>
-              <li>Sin stock: reembolso completo en 48hs</li>
-            </ul>
-            
-            <h4>7. Entregas</h4>
-            <ul class="conditions-list">
-              <li>Modalidad principal: retiro a domicilio (coordinar previamente)</li>
-              <li>Envíos por correo disponibles para otras provincias/países</li>
-              <li>Tiempos de entrega variables según ubicación y disponibilidad</li>
-              <li>Seguros de envío opcionales (recomendado para pedidos +$20.000)</li>
-              <li>Demoras por fuerza mayor no generan reembolsos</li>
-              <li>Verificar datos de entrega antes de confirmar pedido</li>
-            </ul>
-            
-            <h4>8. Limitación de Responsabilidad</h4>
-            <ul class="conditions-list">
-              <li>No nos responsabilizamos por daños indirectos o consecuenciales</li>
-              <li>Responsabilidad limitada al valor del producto</li>
-              <li>Atención personalizada para diseños especiales</li>
-              <li>Reclamos deben realizarse dentro de 48hs de recibido el producto</li>
-            </ul>
-            
-            <h4>9. Uso del Sitio Web</h4>
-            <ul class="conditions-list">
-              <li>Prohibido uso indebido o malintencionado del sitio</li>
-              <li>Contenido del sitio protegido por derechos de autor</li>
-              <li>No garantizamos disponibilidad 24/7 del sitio web</li>
-              <li>Enlaces externos bajo responsabilidad de sus propietarios</li>
-            </ul>
-            
-            <h4>10. Jurisdicción y Ley Aplicable</h4>
-            <ul class="conditions-list">
-              <li>Regido por las leyes de la República Argentina</li>
-              <li>Jurisdicción: Tribunales de Buenos Aires, Argentina</li>
-              <li>Adherido a Defensa del Consumidor (Ley 24.240)</li>
-              <li>Mediación previa obligatoria para conflictos</li>
-            </ul>
-          </div>
+  </div>
+
+  <!-- Footer Navigation -->
+  <div class="footer-nav">
+    <div class="footer-content">
+      <div class="terms-section">
+        <h3>Términos y Condiciones</h3>
+        <div class="terms-content">
+          <h4>1. Información General</h4>
+          <ul class="conditions-list">
+            <li>TeeStyle es un emprendimiento de sublimación con domicilio en Argentina</li>
+            <li>Al realizar un pedido, acepta estos términos en su totalidad</li>
+            <li>Nos reservamos el derecho de modificar estos términos sin previo aviso</li>
+          </ul>
+          
+          <h4>2. Productos y Servicios</h4>
+          <ul class="conditions-list">
+            <li>Garantía de calidad en todos nuestros productos de sublimación</li>
+            <li>Los colores pueden variar ligeramente debido al proceso de sublimación</li>
+            <li>Tiempo de producción: 7-15 días hábiles según disponibilidad</li>
+            <li>Productos personalizados no son reembolsables salvo defecto de fabricación</li>
+          </ul>
+          
+          <h4>3. Derechos de Autor y Propiedad Intelectual</h4>
+          <ul class="conditions-list">
+            <li>El cliente debe poseer derechos sobre las imágenes y diseños enviados</li>
+            <li>No se aceptan diseños con copyright sin autorización expresa</li>
+            <li>TeeStyle no se responsabiliza por infracciones de derechos de autor del cliente</li>
+            <li>Nuestros diseños propios están protegidos por derechos de autor</li>
+            <li>Prohibida la reproducción de marcas registradas sin autorización</li>
+          </ul>
+          
+          <h4>4. Cambios y Devoluciones</h4>
+          <ul class="conditions-list">
+            <li>Cambios por talle: 15 días desde la recepción (producto sin uso)</li>
+            <li>Devoluciones por defecto de fabricación: 30 días</li>
+            <li>Productos personalizados solo se cambian por defecto comprobable</li>
+            <li>Gastos de envío por cambio de talle a cargo del cliente</li>
+          </ul>
+          
+          <h4>5. Política de Privacidad y Datos</h4>
+          <ul class="conditions-list">
+            <li>Los datos personales se utilizan únicamente para procesar pedidos</li>
+            <li>No compartimos información personal con terceros</li>
+            <li>Las imágenes enviadas pueden ser utilizadas como portfolio (previa consulta)</li>
+            <li>Derecho a solicitar eliminación de datos personales</li>
+          </ul>
+          
+          <h4>6. Pagos y Precios</h4>
+          <ul class="conditions-list">
+            <li>Precios sujetos a cambios sin previo aviso</li>
+            <li>Seña del 50% para confirmar pedidos personalizados</li>
+            <li>Métodos de pago: efectivo, transferencia, MercadoPago</li>
+            <li>Sin stock: reembolso completo en 48hs</li>
+          </ul>
+          
+          <h4>7. Entregas</h4>
+          <ul class="conditions-list">
+            <li>Modalidad principal: retiro a domicilio (coordinar previamente)</li>
+            <li>Envíos por correo disponibles para otras provincias/países</li>
+            <li>Tiempos de entrega variables según ubicación y disponibilidad</li>
+            <li>Seguros de envío opcionales (recomendado para pedidos +$20.000)</li>
+            <li>Demoras por fuerza mayor no generan reembolsos</li>
+            <li>Verificar datos de entrega antes de confirmar pedido</li>
+          </ul>
+          
+          <h4>8. Limitación de Responsabilidad</h4>
+          <ul class="conditions-list">
+            <li>No nos responsabilizamos por daños indirectos o consecuenciales</li>
+            <li>Responsabilidad limitada al valor del producto</li>
+            <li>Atención personalizada para diseños especiales</li>
+            <li>Reclamos deben realizarse dentro de 48hs de recibido el producto</li>
+          </ul>
+          
+          <h4>9. Uso del Sitio Web</h4>
+          <ul class="conditions-list">
+            <li>Prohibido uso indebido o malintencionado del sitio</li>
+            <li>Contenido del sitio protegido por derechos de autor</li>
+            <li>No garantizamos disponibilidad 24/7 del sitio web</li>
+            <li>Enlaces externos bajo responsabilidad de sus propietarios</li>
+          </ul>
+          
+          <h4>10. Jurisdicción y Ley Aplicable</h4>
+          <ul class="conditions-list">
+            <li>Regido por las leyes de la República Argentina</li>
+            <li>Jurisdicción: Tribunales de Buenos Aires, Argentina</li>
+            <li>Adherido a Defensa del Consumidor (Ley 24.240)</li>
+            <li>Mediación previa obligatoria para conflictos</li>
+          </ul>
         </div>
-        
-        <div class="contact-section">
-          <h3>Contacto</h3>
-          <div class="contact-info">
-            <div class="contact-item">
-              <span class="contact-icon">📱</span>
-              <span>WhatsApp: +54 9 11 2345-6789</span>
-            </div>
-            <div class="contact-item">
-              <span class="contact-icon">📧</span>
-              <span>Email: pedidos@teestyle.com</span>
-            </div>
-            <div class="contact-item">
-              <span class="contact-icon">📷</span>
-              <span>Instagram: @teestyle_oficial</span>
-            </div>
-            <div class="contact-item">
-              <span class="contact-icon">📘</span>
-              <span>Facebook: TeeStyle Argentina</span>
-            </div>
+      </div>
+      
+      <div class="contact-section">
+        <h3>Contacto</h3>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-icon">📱</span>
+            <span>WhatsApp: +54 9 11 2345-6789</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📧</span>
+            <span>Email: pedidos@teestyle.com</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📷</span>
+            <span>Instagram: @teestyle_oficial</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📘</span>
+            <span>Facebook: TeeStyle Argentina</span>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
   <script>
