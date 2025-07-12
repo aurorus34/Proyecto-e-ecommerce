@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stock Personalización Ropa</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #222222;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  /* Navbar container */
+  .navbar {
+    background-color: #3b5352; /* Dark teal */
+    border: 2px solid #367a65;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 16px;
+  }
+  /* Icon button with circle */
+  .circle-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+    cursor: pointer;
+    user-select: none;
+    color: black;
+  }
+  /* Hamburger menu lines */
+  .hamburger {
+    width: 30px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+  }
+  /* Search input styling */
+  .search-input {
+    flex-grow: 1;
+    height: 32px;
+    border-radius: 4px;
+    border: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 1rem;
+    outline: none;
+  }
+  /* Home icon background circle */
+  .home-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  /* Home icon SVG */
+  .home-icon {
+    fill: white;
+    width: 24px;
+    height: 24px;
+  }
+  /* Main content background */
+  .stock-container {
+    background-color: #d9d9d9;
+    margin: 12px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 100px;
+    gap: 8px;
+  }
+  /* Stock cards white boxes */
+  .stock-box {
+    background-color: white;
+    box-shadow: 0 0 6px rgb(0 0 0 / 0.15);
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* Large boxes across multiple columns */
+  .large-box {
+    grid-column: span 2;
+    height: 80px;
+  }
+  /* Plus sign squares */
+  .plus-box {
+    border: 2px solid black;
+    cursor: pointer;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: black;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    font-family: monospace;
+  }
+  /* Small plus sign near plus-box (the small black plus) */
+  .small-plus {
+    position: absolute;
+    font-size: 1.1rem;
+    font-weight: 900;
+    user-select: none;
+    color: black;
+    line-height: 1;
+    font-family: monospace;
+  }
+  /* Bottom right small plus sign near plus-box */
+  .small-plus-bottom-right {
+    position: absolute;
+    font-size: 1.1rem;
+    font-weight: 900;
+    user-select: none;
+    color: black;
+    line-height: 1;
+    font-family: monospace;
+  }
+  /* Small plus sign top center for some cards */
+  .small-plus-top-center {
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  /* Small plus sign below center */
+  .small-plus-below-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+  }
+  /* Button under last row on right (green) */
+  .bottom-button {
+    grid-column: 6;
+    background-color: #436754;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  /* Lower panel below stock container */
+  .bottom-bar {
+    background-color: #436754;
+    height: 60px;
+    margin: 12px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<header class="navbar" role="banner" aria-label="Barra de navegación principal">
+  <nav aria-label="Menú principal – barra lateral hamburguesa">
+    <button class="hamburger" aria-label="Abrir menú lateral">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+  <button class="circle-button" aria-label="Mostrar precios o moneda">$</button>
+  <input type="search" class="search-input" placeholder="Buscar artículo..." aria-label="Buscar en stock" />
+  <button class="home-icon-wrapper" aria-label="Página inicio">
+    <svg class="home-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" >
+      <path d="M32 12 8 34v18h12V42h12v10h12V34z" />
+    </svg>
+  </button>
+</header>
+
+<main class="stock-container" role="main" aria-label="Vista del stock">
+  <!-- First row large boxes -->
+  <div class="stock-box large-box" aria-label="Producto destacado 1"></div>
+  <div class="stock-box large-box" aria-label="Producto destacado 2"></div>
+  <div class="stock-box plus-box" aria-label="Agregar nuevo producto al stock 1" tabindex="0">+</div>
+  <div class="stock-box plus-box" aria-label="Agregar nuevo producto al stock 2" tabindex="0">+</div>
+  
+  <!-- Second row: 4 normal boxes then 2 plus boxes -->
+  <div class="stock-box" aria-label="Producto 1"></div>
+  <div class="stock-box" aria-label="Producto 2"></div>
+  <div class="stock-box" aria-label="Producto 3"></div>
+  <div class="stock-box" aria-label="Producto 4"></div>
+  <div class="stock-box plus-box" aria-label="Agregar nuevo producto al stock 3" tabindex="0">+</div>
+  <div class="stock-box plus-box" aria-label="Agregar nuevo producto al stock 4" tabindex="0">+</div>
+  
+  <!-- Third row: 2 large, 2 plus boxes -->
+  <div class="stock-box large-box" aria-label="Producto destacado 3"></div>
+  <div class="stock-box large-box" aria-label="Producto destacado 4"></div>
+  <div class="stock-box plus-box" aria-label="Agregar nuevo producto al stock 5" tabindex="0">+</div>
+  <div class="stock-box plus-box" aria-label="Agregar nuevo producto al stock 6" tabindex="0">+</div>
+  
+  <!-- Last row: 4 normal boxes with green button -->
+  <div class="stock-box" aria-label="Producto 5"></div>
+  <div class="stock-box" aria-label="Producto 6"></div>
+  <div class="stock-box" aria-label="Producto 7"></div>
+  <div class="stock-box" aria-label="Producto 8"></div>
+  <div class="stock-box plus-box" aria-label="Agregar nuevo producto al stock 7" tabindex="0">+</div>
+  <div class="bottom-button" role="button" tabindex="0" aria-label="Acción destacada"></div>
+</main>
+
+<section class="bottom-bar" aria-label="Barra inferior informativa"></section>
+
+</body>
+</html>
